@@ -1,0 +1,36 @@
+*.exe
+*.dll
+*.lib
+*.so
+*.a
+*.o
+*.obj
+*.exp
+
+# cmake files
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+cmake_uninstall.cmake
+
+# binaries
+HelloU3DWorld
+IDTFConverter
+IDTFGen
+
+# others
+jconfig.h
+zconf.h
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
