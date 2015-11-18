@@ -17,7 +17,7 @@
 //***************************************************************************
 
 /**
-	@file  CIFXView.cpp                                                          
+	@file  CIFXView.cpp
 */
 
 #include <float.h>
@@ -397,7 +397,7 @@ void CIFXView::Counter(EIFXNodeCounterType type, U32* pOutCount)
 	if ( pOutCount )
 	{
 		U32 childCount = m_pChildren.GetNumberElements();
-		while (childCount) 
+		while (childCount)
 		{
 			m_pChildren[--childCount]->Counter(type, pOutCount);
 		}
@@ -407,7 +407,7 @@ void CIFXView::Counter(EIFXNodeCounterType type, U32* pOutCount)
 	}
 	else
 		IFXTRACE_GENERIC(
-		L"CIFXView::Counter() called with an invalid pointer! Line:%d\n", 
+		L"CIFXView::Counter() called with an invalid pointer! Line:%d\n",
 		__LINE__);
 }
 
@@ -905,17 +905,17 @@ IFXRESULT CIFXView::UpdateViewport()
 
 	// if the view has changed, or view uses screen independent units for viewport
 	//	update the viewport.
-	if( m_bViewOrScaleChanged || ((m_attributes & IFX_PERCENTDIMEN) && !(m_rcScreenSize == rcScreenSize)) ) 	
+	if( m_bViewOrScaleChanged || ((m_attributes & IFX_PERCENTDIMEN) && !(m_rcScreenSize == rcScreenSize)) )
 	{
-		if (m_attributes & IFX_PERCENTDIMEN) 
+		if (m_attributes & IFX_PERCENTDIMEN)
 		{
 			m_rcRenderViewport.m_X = (I32)(rcScreenSize.m_Width * m_rcViewport.m_X + 0.5001f);
 			m_rcRenderViewport.m_Width = (I32)(rcScreenSize.m_Width * m_rcViewport.m_Width + 0.5001f);
 			m_rcRenderViewport.m_Y = (I32)(rcScreenSize.m_Height * m_rcViewport.m_Y + 0.5001f);
 			m_rcRenderViewport.m_Height = (I32)(rcScreenSize.m_Height * m_rcViewport.m_Height + 0.5001f);
 			m_rcScreenSize = rcScreenSize;
-		} 
-		else 
+		}
+		else
 		{
 			m_rcRenderViewport.m_X = (I32)(m_rcViewport.m_X * m_fScaleX + 0.5001f);
 			m_rcRenderViewport.m_Width = (I32)(m_rcViewport.m_Width * m_fScaleX + 0.5001f);
@@ -1241,8 +1241,8 @@ IFXRESULT CIFXView::ComputeFrustumPlanes(IFXMatrix4x4& mUnscaledWorld)
 	// F32 ratio = (m_scaledFarClip/m_farClip);
 	// F32 scaledNearClip = m_nearClip * ratio;
 	// Before doing this the F32 overflow problem must be mitigated by clampping
-	// to the appropriate range or using doubles. 
-	
+	// to the appropriate range or using doubles.
+
 	*/
 
 	return result;
@@ -1748,7 +1748,7 @@ IFXRESULT CIFXView::RenderView(IFXRenderContext* pRenderContext, U32 ViewInstanc
 													}
 													else
 													{
-														IFXTRACE_GENERIC(__WFILE__ L"("__THISLINE__ L") : ERROR: NULL shader palette entry found in render pipeline!\n");
+														IFXTRACE_GENERIC(__WFILE__ L"(" __THISLINE__ L") : ERROR: NULL shader palette entry found in render pipeline!\n");
 													}
 
 													IFXRELEASE( pShader );
@@ -1824,7 +1824,7 @@ IFXRESULT CIFXView::RenderView(IFXRenderContext* pRenderContext, U32 ViewInstanc
 					pShader->ShadedElementList().RemoveAll();
 				}
 				m_translucents.ToHead(context);
-				while( NULL != (ppTE = m_translucents.PostIncrement(context)) ) 
+				while( NULL != (ppTE = m_translucents.PostIncrement(context)) )
 					delete *ppTE;
 				m_translucents.DeleteAll();
 
@@ -1880,7 +1880,7 @@ IFXRESULT CIFXView::GetCullingSubsystem( IFXSpatialSetQuery*& rpOutCuller )
 	if ( NULL == m_pCullingSubsystem )
 	{
 		// Create the initial culling system
-		result = IFXCreateComponent( 
+		result = IFXCreateComponent(
 							CID_IFXSceneGraphCuller,
 							IID_IFXSpatialSetQuery,
 							(void**)&m_pCullingSubsystem );
@@ -1899,7 +1899,7 @@ IFXRESULT CIFXView::SetCullingSubsystem( IFXSpatialSetQuery& rInCuller )
 {
 	IFXRESULT result = IFX_OK;
 
-	IFXDECLARELOCAL(IFXViewResource, pVR); 
+	IFXDECLARELOCAL(IFXViewResource, pVR);
 	pVR = GetViewResource();
 	if( NULL == pVR )
 		result = IFX_E_UNDEFINED;
@@ -1969,7 +1969,7 @@ IFXRESULT CIFXView::GenerateRay(const F32   x,
 		// Decompose the world matrix
 		result = pWorldTransform->Decompose(translation, mUnscaledWorld, scale);
 
-		if (IFXSUCCESS(result)) 
+		if (IFXSUCCESS(result))
 		{
 			mUnscaledWorld.SetTranslation(translation);
 
@@ -2439,7 +2439,7 @@ IFXRESULT CIFXView::SetProjection(IFXVector3 projVector)
 
 IFXRESULT CIFXView::GetProjection(IFXVector3* pProjVector)
 {
-	if( ( m_attributes & IFX_PERSPECTIVE2 ) && 
+	if( ( m_attributes & IFX_PERSPECTIVE2 ) &&
 		( m_attributes & IFX_PERSPECTIVE1 ) )
 	{
 		(*pProjVector).X() = 0.0f;
@@ -2486,7 +2486,7 @@ const CIFXViewLayer& CIFXViewLayer::operator=(const IFXViewLayer& Layer)
 }
 
 /**
-	This function looks for a modifier with the requested IID through 
+	This function looks for a modifier with the requested IID through
 	both the node and resource modifier chain of pModel
 */
 IFXRESULT FindModifier( IFXModel* pModel, IFXREFIID iid, IFXModifier** pMod, U32 number )
