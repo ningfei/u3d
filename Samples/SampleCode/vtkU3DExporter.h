@@ -9,6 +9,7 @@
 #ifndef __vtkU3DExporter_h
 #define __vtkU3DExporter_h
 
+#include "vtkIOExportModule.h" // For export macro
 #include "vtkExporter.h"
 
 class vtkLight;
@@ -19,12 +20,12 @@ class vtkDataArray;
 class vtkUnsignedCharArray;
 class vtkRenderer;
 
-class VTK_HYBRID_EXPORT vtkU3DExporter : public vtkExporter
+
+class VTKIOEXPORT_EXPORT vtkU3DExporter : public vtkExporter
 {
 public:
   static vtkU3DExporter *New();
-  vtkTypeRevisionMacro(vtkU3DExporter,vtkExporter);
-  void PrintSelf(ostream& os, vtkIndent indent);
+  vtkTypeMacro(vtkU3DExporter,vtkExporter);
 
   // Description:
   // Set/Get the output file name.
@@ -47,6 +48,10 @@ protected:
 
   char *FileName;
   int MeshCompression;
+
+private:
+  vtkU3DExporter(const vtkU3DExporter&);  // Not implemented.
+  void operator=(const vtkU3DExporter&);  // Not implemented.
 
 };
 
