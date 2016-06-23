@@ -1,17 +1,14 @@
 PROJECT (vtkU3DExporter)
 cmake_minimum_required(VERSION 3.5)
 
+SET(EXPORTER_SRC "vtkU3DExporter.cxx" "vtkU3DExporter.h")
+
 
 option(WRAP_PYTHON "Build Python wrappers" ON)
 
 
 FIND_PACKAGE(VTK REQUIRED)
 INCLUDE (${VTK_USE_FILE})
-
-
-# IF(APPLE)
-#   SET(EXECUTABLE_FLAG MACOSX_BUNDLE)
-# ENDIF(APPLE)
 
 
 find_library(U3D_LIB IDTF)
@@ -36,10 +33,10 @@ include_directories("${PYTHON_INCLUDE_PATH}")
 
 include(vtkWrapPython)
 
-vtk_wrap_python3(${PROJECT_NAME} vtkU3DExporter.cxx vtkU3DExporter.h)
+vtk_wrap_python3(${PROJECT_NAME} ${EXPORTER_SRC})
 
 
-ADD_LIBRARY(${PROJECT_NAME} MODULE vtkU3DExporter.cxx vtkU3DExporter.h )
+ADD_LIBRARY(${PROJECT_NAME} MODULE ${EXPORTER_SRC})
 set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")
 if( WIN32 )
     SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES SUFFIX ".pyd")
