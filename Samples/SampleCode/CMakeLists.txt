@@ -4,8 +4,6 @@ cmake_minimum_required(VERSION 3.5)
 SET(EXPORTER_SRC "vtkU3DExporter.cxx" "vtkU3DExporter.h")
 
 
-option(WRAP_PYTHON "Build Python wrappers" ON)
-
 
 FIND_PACKAGE(VTK REQUIRED)
 INCLUDE (${VTK_USE_FILE})
