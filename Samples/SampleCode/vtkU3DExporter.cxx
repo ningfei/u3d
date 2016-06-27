@@ -32,11 +32,11 @@
 #include "vtkTransform.h"
 #include "vtkTriangleFilter.h"
 
-#include <vtksys/ios/sstream>
+#include <sstream>
 #include <cassert>
+#include <list>
 
-#include <vtkstd/string>
-#include "vtkstd/list"
+#include "vtkStdString.h"
 
 #include "IFXResult.h"
 #include "IFXOSLoader.h"
@@ -67,12 +67,12 @@
 
 class vtkPolyData;
 // A hack to get to internal vtkMapper data
-class VTK_RENDERING_EXPORT vtkMyPolyDataMapper : public vtkPolyDataMapper
+class VTKRENDERINGCORE_EXPORT vtkMyPolyDataMapper : public vtkPolyDataMapper
 {
 public:
-vtkFloatArray *GetColorCoordinates();
-vtkImageData *GetColorTextureMap();
-vtkUnsignedCharArray  *GetColors();
+  vtkFloatArray *GetColorCoordinates();
+  vtkImageData *GetColorTextureMap();
+  vtkUnsignedCharArray  *GetColors();
 };
 vtkFloatArray *vtkMyPolyDataMapper::GetColorCoordinates()
 {
@@ -93,7 +93,6 @@ using namespace U3D_IDTF;
 static bool vtkU3DExporterWriterUsingCellColors(vtkActor* anActor);
 
 //----------------------------------------------------------------------------
-vtkCxxRevisionMacro(vtkU3DExporter, "$Revision: 0.01 $");
 vtkStandardNewMacro(vtkU3DExporter);
 
 //----------------------------------------------------------------------------
@@ -115,7 +114,7 @@ struct u3dLine
   double color[3];
 };
 
-typedef vtkstd::list<u3dLine>  u3dLineSet;
+typedef std::list<u3dLine>  u3dLineSet;
 
 static void AddLine(u3dLineSet& LineSet,
                     vtkIdType point1, vtkIdType point2,
@@ -594,7 +593,7 @@ void vtkU3DExporter::WriteData()
       if ( ds->GetDataObjectType() != VTK_POLY_DATA )
       {
         gf = vtkSmartPointer<vtkDataSetSurfaceFilter>::New();
-        gf->SetInput(ds);
+        gf->SetInputData(ds);
         gf->Update();
         pd = gf->GetOutput();
       }
@@ -732,7 +731,7 @@ void vtkU3DExporter::WriteData()
 
          // we really want triangle polydata
          VTK_CREATE(vtkTriangleFilter, tg);
-         tg->SetInput(pd);
+         tg->SetInputData(pd);
          tg->PassVertsOff();
          tg->PassLinesOff();
          tg->Update();
@@ -757,7 +756,7 @@ void vtkU3DExporter::WriteData()
            myPolyDataMapper->ShallowCopy(static_cast<vtkDataSetMapper*>(myActor->GetMapper())->GetPolyDataMapper());
          else
            continue;
-         myPolyDataMapper->SetInput(ppd);
+         myPolyDataMapper->SetInputData(ppd);
          myPolyDataMapper->SetInterpolateScalarsBeforeMapping(isbm);
          myActor->SetMapper(myPolyDataMapper);
 
@@ -1412,14 +1411,14 @@ void vtkU3DExporter::WriteData()
             {
             VTK_NEW(vtkPolyDataMapper, myPolyDataMapper);
             myPolyDataMapper->ShallowCopy(myActor->GetMapper());
-            myPolyDataMapper->SetInput(pd);
+            myPolyDataMapper->SetInputData(pd);
             myActor->SetMapper(myPolyDataMapper);
             }
           else if (myActor->GetMapper()->IsA("vtkDataSetMapper"))
             {
             VTK_NEW(vtkDataSetMapper, myDataSetMapper);
             myDataSetMapper->ShallowCopy(myActor->GetMapper());
-            myDataSetMapper->SetInput(pd);
+            myDataSetMapper->SetInputData(pd);
             myActor->SetMapper(myDataSetMapper);
             }
           else
@@ -1825,20 +1824,6 @@ AddLine(LineSet, point1, point2, NULL, NULL);        \
 }
 
 //----------------------------------------------------------------------------
-void vtkU3DExporter::PrintSelf(ostream& os, vtkIndent indent)
-{
-  this->Superclass::PrintSelf(os,indent);
-
-  if (this->FileName)
-    {
-    os << indent << "FileName: " << this->FileName << "\n";
-    }
-  else
-    {
-    os << indent << "FileName: (null)\n";
-    }
-  os << indent << "MeshCompression: " << this->MeshCompression << endl;
-}
 static bool vtkU3DExporterWriterUsingCellColors(vtkActor* anActor)
 {
   int cellFlag = 0;

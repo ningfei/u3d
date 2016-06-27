@@ -22,6 +22,7 @@ IDTFGen
 # others
 jconfig.h
 zconf.h
+.idea
 
 # OS generated files #
 ######################
@@ -33,4 +34,3 @@ zconf.h
 ehthumbs.db
 Thumbs.db
 *~
-

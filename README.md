@@ -1,3 +1,55 @@
+This is a fork of ningfei/u3d which is a fork of the v1.4.5 U3D library. It has been updated to support x86 and x64 Windows (VS2008, VS2010, VS2015), Linux and OS X.
+
+See here for an conda package: https://github.com/conda-forge/u3d-feedstock
+
+# Build scripts
+
+Below are the build scripts used to compile and install the U3D library.
+
+Set `U3D_SHARED=OFF` to use the packaged `libpng`, `jpeg` and `zlib` libraries, or on to use system installed.
+
+## Windows
+
+Confirmed to work for x86 and x64; VS2008, VS2010 and VS2015. Set `%LIBRARY_PREFIX%` to the target installation directory.
+
+```batch
+set BUILD_CONFIG=Release
+
+mkdir build
+cd build
+
+cmake .. -G "NMake Makefiles" ^
+    -Wno-dev ^
+    -DCMAKE_BUILD_TYPE=%BUILD_CONFIG% ^
+    -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" ^
+    -DU3D_SHARED:BOOL=ON
+if errorlevel 1 exit 1
+
+nmake install
+if errorlevel 1 exit 1
+```
+
+## Unix
+
+Confirmed to work for x86 and x64 Linux and x64 OS X. Set `$PREFIX` to the target installation directory.
+
+```bash
+#!/usr/bin/env bash
+BUILD_CONFIG=Release
+
+mkdir build
+cd build
+
+cmake .. -G "Unix Makefiles" \
+    -DCMAKE_BUILD_TYPE=$BUILD_CONFIG \
+    -DCMAKE_INSTALL_PREFIX=$PREFIX \
+    -DU3D_SHARED:BOOL=ON
+
+make install
+```
+
+# Original Readme
+
 U3D is a format for 3D models that can be embedded into PDF and viewed in Adobe Acrobat/Reader 
 (but not other PDF viewers).
 There is a C++ library to produce U3D files and a converter from IDTF, a verbose text format.

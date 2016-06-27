@@ -31,15 +31,16 @@
 #include <math.h>
 
 #if defined(_MSC_VER) && (_MSC_VER < 1600) // For Visual C++ without C99 support (before 10.0)
-typedef UINT64  U64;
-typedef UINT32  U32;
-typedef UINT16  U16;
-typedef UINT8   U8;
-typedef UINT_PTR UPTR;
-typedef INT64   I64;
-typedef INT32   I32;
-typedef INT16   I16;
-typedef INT8    I8;
+typedef unsigned __int64  U64;
+typedef unsigned int    U32;
+typedef unsigned short    U16;
+typedef unsigned char   U8;
+typedef unsigned int    UPTR;
+typedef __int64     I64;
+typedef int       I32;
+typedef short     I16;
+typedef char      I8;
+#define U32_MAX ULONG_MAX
 #else
 #include <stdint.h>
 typedef uint64_t  U64;
@@ -51,8 +52,8 @@ typedef int64_t  I64;
 typedef int32_t  I32;
 typedef int16_t  I16;
 typedef int8_t   I8;
-#endif
 #define U32_MAX 4294967295U
+#endif
 
 typedef float     F32;
 typedef double      F64;
