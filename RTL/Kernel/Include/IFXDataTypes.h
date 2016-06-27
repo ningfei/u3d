@@ -30,7 +30,8 @@
 #include <sys/types.h>
 #include <math.h>
 
-#if defined(_MSC_VER) && (_MSC_VER < 1600) // For Visual C++ without C99 support (before 10.0)
+#if (defined(_MSC_VER) && _MSC_VER < 1600)
+// For Visual C++ without C99 support (before 10.0)
 typedef UINT64  U64;
 typedef UINT32  U32;
 typedef UINT16  U16;
