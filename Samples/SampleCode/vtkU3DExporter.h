@@ -9,6 +9,14 @@
 #ifndef __vtkU3DExporter_h
 #define __vtkU3DExporter_h
 
+#define OBJECT_INTERACTOR_STYLE_EXPORT __declspec( dllexport )
+
+#if defined(_WIN32)
+#define VTKU3DEXPORTER_EXPORT __declspec( dllexport )
+#else
+#define VTKU3DEXPORTER_EXPORT
+#endif
+
 #include "vtkIOExportModule.h" // For export macro
 #include "vtkExporter.h"
 
@@ -21,7 +29,7 @@ class vtkUnsignedCharArray;
 class vtkRenderer;
 
 
-class VTKIOEXPORT_EXPORT vtkU3DExporter : public vtkExporter
+class VTKU3DEXPORTER_EXPORT vtkU3DExporter : public vtkExporter
 {
 public:
   static vtkU3DExporter *New();

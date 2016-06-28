@@ -67,7 +67,7 @@
 
 class vtkPolyData;
 // A hack to get to internal vtkMapper data
-class VTKRENDERINGCORE_EXPORT vtkMyPolyDataMapper : public vtkPolyDataMapper
+class VTKU3DEXPORTER_EXPORT vtkMyPolyDataMapper : public vtkPolyDataMapper
 {
 public:
   vtkFloatArray *GetColorCoordinates();
