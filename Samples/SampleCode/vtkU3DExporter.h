@@ -69,7 +69,7 @@ protected:
     // Write data to output.
     void WriteData();
 
-    char *FileName;
+    char *FileName = new char();
     int MeshCompression;
 
 private:

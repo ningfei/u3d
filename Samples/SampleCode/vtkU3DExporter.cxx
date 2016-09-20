@@ -99,7 +99,7 @@ vtkStandardNewMacro(vtkU3DExporter);
 
 //----------------------------------------------------------------------------
 vtkU3DExporter::vtkU3DExporter() {
-    this->SetFileName("Exported");
+    this->FileName = NULL;
     this->MeshCompression = 0;
 }
 
@@ -1347,15 +1347,11 @@ void vtkU3DExporter::WriteData() {
                                 // Textures and vertex colors are not supported
                                 if ((numLines > 0) ||
                                     ((numPolys > 0 || numStrips > 0) && representation == VTK_WIREFRAME)) {
-                                    vtkPointData *pntData;
-                                    vtkCellData *cellData;
                                     vtkPoints *points;
                                     vtkProperty *prop;
                                     vtkUnsignedCharArray *colors = NULL;
 
                                     points = pd->GetPoints();
-                                    pntData = pd->GetPointData();
-                                    cellData = pd->GetCellData();
 
                                     VTK_CREATE(vtkActor, myActor);
                                     VTK_DECLARE(vtkPolyDataMapper, myPolyDataMapper);
