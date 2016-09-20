@@ -65,6 +65,18 @@
 
 #define sign(x) ((x<0.0) ? (-1.0) : (1.0))
 
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <wctype.h>
+/* Write formatted output of at most N characters to S.  */
+extern int swprintf (wchar_t *__restrict __s, size_t __n,
+                     __const wchar_t *__restrict __format, ...);
+    __THROW /* __attribute__ ((__format__ (__wprintf__, 3, 4))) */;
+
+
 class vtkPolyData;
 
 // A hack to get to internal vtkMapper data
