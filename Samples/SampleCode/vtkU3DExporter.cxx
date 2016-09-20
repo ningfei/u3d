@@ -243,7 +243,7 @@ void vtkU3DExporter::WriteData() {
 
     // make sure the user specified a FileName or FilePointer
     if (this->FileName == NULL) {
-        vtkErrorMacro( << "Please specify FileName to use");
+        vtkErrorMacro("Please specify FileName to use");
         return;
     }
 
@@ -260,7 +260,7 @@ void vtkU3DExporter::WriteData() {
 
     // make sure it has at least one actor
     if (ren->GetActors()->GetNumberOfItems() < 1) {
-        vtkErrorMacro( << "no actors found for writing U3D file.");
+        vtkErrorMacro("no actors found for writing U3D file.");
         return;
     }
 
@@ -290,7 +290,7 @@ void vtkU3DExporter::WriteData() {
         mbstowcs(wU3DFileName, this->FileName, 32000);
         wcsncat(wU3DFileName, L".u3d", 4);
         fileOptions.outFile = wU3DFileName;
-        //delete[] wU3DFileName;
+        delete[] wU3DFileName;
 
         fileOptions.exportOptions = IFXExportOptions(65535);
         fileOptions.profile = 0;
@@ -939,7 +939,7 @@ void vtkU3DExporter::WriteData() {
                                             imageFormat.m_red = IDTF_TRUE;
 
                                             wchar_t texturePath[512];
-                                            //swprintf(texturePath, 511, L"%s_%ls.tga", this->FileName, textureName);
+                                            swprintf(texturePath, 511, L"%ls_%ls.tga", this->FileName, textureName);
                                             textureResource.AddImageFormat(imageFormat);
                                             textureResource.SetExternal(FALSE);
                                             textureResource.SetPath(texturePath);
