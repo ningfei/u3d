@@ -99,7 +99,7 @@ vtkStandardNewMacro(vtkU3DExporter);
 
 //----------------------------------------------------------------------------
 vtkU3DExporter::vtkU3DExporter() {
-    this->FileName = "/home/MaxCG/Report";
+    this->FileName = "report";
     this->MeshCompression = 0;
 }
 
@@ -939,10 +939,7 @@ void vtkU3DExporter::WriteData() {
                                             imageFormat.m_red = IDTF_TRUE;
 
                                             wchar_t texturePath[512];
-                                            swprintf(texturePath, 511, L"Texture%u", textureName);
-                                            //swprintf(texturePath, 511, L"%S_%ls.tga", this->FileName, textureName);
-                                            //swprintf(materialName, 255, L"Material%u", pMaterialResources->GetResourceCount());
-
+                                            swprintf(texturePath, 511, L"%S_%ls.tga", this->FileName, textureName);
                                             textureResource.AddImageFormat(imageFormat);
                                             textureResource.SetExternal(FALSE);
                                             textureResource.SetPath(texturePath);
