@@ -25,45 +25,56 @@
 #include "vtkExporter.h"
 
 class vtkLight;
+
 class vtkActor;
+
 class vtkActor2D;
+
 class vtkPoints;
+
 class vtkDataArray;
+
 class vtkUnsignedCharArray;
+
 class vtkRenderer;
 
 
-class VTKU3DEXPORTER_EXPORT vtkU3DExporter : public vtkExporter
-{
+class VTKU3DEXPORTER_EXPORT vtkU3DExporter : public vtkExporter {
 public:
-  static vtkU3DExporter *New();
-  vtkTypeMacro(vtkU3DExporter, vtkExporter);
+    static vtkU3DExporter *New();
 
-  // Description:
-  // Set/Get the output file name.
-  vtkSetStringMacro(FileName);
-  vtkGetStringMacro(FileName);
+    vtkTypeMacro(vtkU3DExporter, vtkExporter
+    );
 
-  // Description:
-  // Specify if compression of meshes is enabled
-  vtkSetClampMacro(MeshCompression, int, 0, 1);
-  vtkBooleanMacro(MeshCompression, int);
-  vtkGetMacro(MeshCompression, int);
+    // Description:
+    // Set/Get the output file name.
+    vtkSetStringMacro(FileName);
+    vtkGetStringMacro(FileName);
+
+    // Description:
+    // Specify if compression of meshes is enabled
+    vtkSetClampMacro(MeshCompression,
+    int, 0, 1);
+    vtkBooleanMacro(MeshCompression,
+    int);
+    vtkGetMacro(MeshCompression,
+    int);
 
 protected:
-  vtkU3DExporter();
-  ~vtkU3DExporter();
+    vtkU3DExporter();
 
-  // Description:
-  // Write data to output.
-  void WriteData();
+    ~vtkU3DExporter();
 
-  char *FileName;
-  int MeshCompression;
+    // Description:
+    // Write data to output.
+    void WriteData();
+
+    char *FileName;
+    int MeshCompression;
 
 private:
-  vtkU3DExporter(const vtkU3DExporter&);  // Not implemented.
-  void operator=(const vtkU3DExporter&);  // Not implemented.
+    vtkU3DExporter(const vtkU3DExporter &);  // Not implemented.
+    void operator=(const vtkU3DExporter &);  // Not implemented.
 
 };
 

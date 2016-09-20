@@ -99,7 +99,7 @@ vtkStandardNewMacro(vtkU3DExporter);
 
 //----------------------------------------------------------------------------
 vtkU3DExporter::vtkU3DExporter() {
-    this->FileName = NULL;
+    this->FileName = "/home/MaxCG/Report";
     this->MeshCompression = 0;
 }
 
