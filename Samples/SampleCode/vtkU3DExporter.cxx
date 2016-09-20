@@ -99,7 +99,7 @@ vtkStandardNewMacro(vtkU3DExporter);
 
 //----------------------------------------------------------------------------
 vtkU3DExporter::vtkU3DExporter() {
-    this->FileName = "report";
+    this->FileName = "Report";
     this->MeshCompression = 0;
 }
 
