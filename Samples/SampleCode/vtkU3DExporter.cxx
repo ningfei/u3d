@@ -37,7 +37,7 @@
 #include <list>
 
 #include "vtkStdString.h"
-
+#include "string.h"
 #include "IFXResult.h"
 #include "IFXOSLoader.h"
 
