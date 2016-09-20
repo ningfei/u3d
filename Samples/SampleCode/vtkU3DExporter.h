@@ -9,7 +9,11 @@
 #ifndef __vtkU3DExporter_h
 #define __vtkU3DExporter_h
 
+#if defined(_WIN32)
 #define OBJECT_INTERACTOR_STYLE_EXPORT __declspec( dllexport )
+#else
+#define OBJECT_INTERACTOR_STYLE_EXPORT
+#endif
 
 #if defined(_WIN32)
 #define VTKU3DEXPORTER_EXPORT __declspec( dllexport )
@@ -33,7 +37,7 @@ class VTKU3DEXPORTER_EXPORT vtkU3DExporter : public vtkExporter
 {
 public:
   static vtkU3DExporter *New();
-  vtkTypeMacro(vtkU3DExporter,vtkExporter);
+  vtkTypeMacro(vtkU3DExporter, vtkExporter);
 
   // Description:
   // Set/Get the output file name.
@@ -41,7 +45,7 @@ public:
   vtkGetStringMacro(FileName);
 
   // Description:
-  // Specify if compression of meshes is enabled 
+  // Specify if compression of meshes is enabled
   vtkSetClampMacro(MeshCompression, int, 0, 1);
   vtkBooleanMacro(MeshCompression, int);
   vtkGetMacro(MeshCompression, int);
