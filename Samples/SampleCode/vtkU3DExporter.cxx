@@ -939,7 +939,10 @@ void vtkU3DExporter::WriteData() {
                                             imageFormat.m_red = IDTF_TRUE;
 
                                             wchar_t texturePath[512];
-                                            swprintf(texturePath, 511, L"%S_%ls.tga", this->FileName, textureName);
+                                            swprintf(texturePath, 511, L"Texture%u", textureName);
+                                            //swprintf(texturePath, 511, L"%S_%ls.tga", this->FileName, textureName);
+                                            //swprintf(materialName, 255, L"Material%u", pMaterialResources->GetResourceCount());
+
                                             textureResource.AddImageFormat(imageFormat);
                                             textureResource.SetExternal(FALSE);
                                             textureResource.SetPath(texturePath);
