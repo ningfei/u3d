@@ -287,8 +287,8 @@ void vtkU3DExporter::WriteData() {
         FileOptions fileOptions;
 
         wchar_t *wU3DFileName = new wchar_t[mbstowcs(NULL, this->FileName, 32000) + 1 + 4];
-        mbstowcs(wU3DFileName, this->FileName, 32000);
-        wcsncat(wU3DFileName, L".u3d", 4);
+        mbstowcs_s(wU3DFileName, this->FileName, 32000);
+        wcsncat_s(wU3DFileName, L".u3d", 4);
         fileOptions.outFile = wU3DFileName;
         delete[] wU3DFileName;
 
@@ -1718,8 +1718,8 @@ AddLine(LineSet, point1, point2, NULL, NULL);        \
                 }
             }
             char *idtfFileName = new char[strlen(this->FileName) + 1 + 5];
-            strcpy(idtfFileName, this->FileName);
-            strcat(idtfFileName, ".idtf");
+            strcpy_s(idtfFileName, this->FileName);
+            strcat_s(idtfFileName, ".idtf");
             converter.Export(idtfFileName);
             delete[] idtfFileName;
             converter.Convert();
