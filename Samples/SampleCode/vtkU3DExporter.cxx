@@ -287,11 +287,12 @@ void vtkU3DExporter::WriteData() {
         ConverterOptions converterOptions;
         FileOptions fileOptions;
 
-        wchar_t *wU3DFileName = new wchar_t[strlen(this->FileName) + 1 + 4];
-        mbstowcs(wU3DFileName, this->FileName, 32000);
-        wcsncat(wU3DFileName, L".u3d", 4);
-        fileOptions.outFile = wU3DFileName;
-        delete[] wU3DFileName;
+        //wchar_t *wU3DFileName = new wchar_t[strlen(this->FileName) + 1 + 4];
+        //mbstowcs(wU3DFileName, this->FileName, 32000);
+        //wcsncat(wU3DFileName, L".u3d", 4);
+        //fileOptions.outFile = wU3DFileName;
+        //delete[] wU3DFileName;
+        fileOptions.outFile = L"Exported.u3d";
 
         fileOptions.exportOptions = IFXExportOptions(65535);
         fileOptions.profile = 0;
