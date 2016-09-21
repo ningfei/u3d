@@ -100,6 +100,7 @@ vtkStandardNewMacro(vtkU3DExporter);
 //----------------------------------------------------------------------------
 vtkU3DExporter::vtkU3DExporter() {
     this->FileName = NULL;
+    this->SetFileName("Exported");
     this->MeshCompression = 0;
 }
 
