@@ -9,11 +9,7 @@
 #ifndef __vtkU3DExporter_h
 #define __vtkU3DExporter_h
 
-#if defined(_WIN32)
 #define OBJECT_INTERACTOR_STYLE_EXPORT __declspec( dllexport )
-#else
-#define OBJECT_INTERACTOR_STYLE_EXPORT
-#endif
 
 #if defined(_WIN32)
 #define VTKU3DEXPORTER_EXPORT __declspec( dllexport )
@@ -25,56 +21,45 @@
 #include "vtkExporter.h"
 
 class vtkLight;
-
 class vtkActor;
-
 class vtkActor2D;
-
 class vtkPoints;
-
 class vtkDataArray;
-
 class vtkUnsignedCharArray;
-
 class vtkRenderer;
 
 
-class VTKU3DEXPORTER_EXPORT vtkU3DExporter : public vtkExporter {
+class VTKU3DEXPORTER_EXPORT vtkU3DExporter : public vtkExporter
+{
 public:
-    static vtkU3DExporter *New();
+  static vtkU3DExporter *New();
+  vtkTypeMacro(vtkU3DExporter,vtkExporter);
 
-    vtkTypeMacro(vtkU3DExporter, vtkExporter
-    );
+  // Description:
+  // Set/Get the output file name.
+  vtkSetStringMacro(FileName);
+  vtkGetStringMacro(FileName);
 
-    // Description:
-    // Set/Get the output file name.
-    vtkSetStringMacro(FileName);
-    vtkGetStringMacro(FileName);
-
-    // Description:
-    // Specify if compression of meshes is enabled
-    vtkSetClampMacro(MeshCompression,
-    int, 0, 1);
-    vtkBooleanMacro(MeshCompression,
-    int);
-    vtkGetMacro(MeshCompression,
-    int);
+  // Description:
+  // Specify if compression of meshes is enabled 
+  vtkSetClampMacro(MeshCompression, int, 0, 1);
+  vtkBooleanMacro(MeshCompression, int);
+  vtkGetMacro(MeshCompression, int);
 
 protected:
-    vtkU3DExporter();
+  vtkU3DExporter();
+  ~vtkU3DExporter();
 
-    ~vtkU3DExporter();
+  // Description:
+  // Write data to output.
+  void WriteData();
 
-    // Description:
-    // Write data to output.
-    void WriteData();
-
-    char *FileName;
-    int MeshCompression;
+  char *FileName;
+  int MeshCompression;
 
 private:
-    vtkU3DExporter(const vtkU3DExporter &);  // Not implemented.
-    void operator=(const vtkU3DExporter &);  // Not implemented.
+  vtkU3DExporter(const vtkU3DExporter&);  // Not implemented.
+  void operator=(const vtkU3DExporter&);  // Not implemented.
 
 };
 
