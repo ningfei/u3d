@@ -65,6 +65,7 @@ if(WRAP_PYTHON)
     
     # Create PythonD library (brings everything together)
     ADD_LIBRARY("${PROJECT_NAME}PythonD" ${PYTHON_SRCS} "${EXPORTER_SRC}")
+    SET_TARGET_PROPERTIES("${PROJECT_NAME}PythonD" PROPERTIES POSITION_INDEPENDENT_CODE ON)
     IF(WIN32)
         TARGET_LINK_LIBRARIES("${PROJECT_NAME}PythonD" 
             winmm)
